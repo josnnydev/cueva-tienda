@@ -3,16 +3,10 @@ import { getAllProducts } from '@/prisma-db'
 import Image from 'next/image'
 import Link from 'next/link';
 
-type Product = {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-}
+ 
 
 export default async function Products() {
-    const allProducts: Product[] = await getAllProducts();
+    const allProducts  = await getAllProducts();
     
     return (
         <div className="container mx-auto px-4 py-8"> 

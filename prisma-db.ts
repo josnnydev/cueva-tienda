@@ -1,6 +1,26 @@
+ 
+
+ 
+
+ 
+
+// Funciones para interactuar con la base de datos
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+ 
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
+const prisma = globalForPrisma.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+interface Product{
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
 
 const addProduct = async (name: string, description: string, price: number, image: string) => {
   await prisma.product.create({
@@ -13,11 +33,13 @@ const addProduct = async (name: string, description: string, price: number, imag
   })
 }
 
-const getAllProducts = async () => {
+const getAllProducts = async (): Promise<Product[]> => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
   return await prisma.product.findMany();
 }
 
-const getProductById = async (id: number) => {
+const getProductById = async (id: number): Promise<Product | null> => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
   return await prisma.product.findUnique({
     where: {
       id
@@ -80,7 +102,7 @@ const seed = async () => {
     }
 }
 
-seed();
+ 
 
 
 export { addProduct, getAllProducts, getProductById, updateProduct, deleteProduct, deleteAllProducts, seed }
