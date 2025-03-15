@@ -10,8 +10,9 @@ import { notFound } from 'next/navigation';
 
 export default async function ProductPage(
   
-  {params}: {params: Promise<{ id: string }>}
-  ) {
+  {params}: {params:  { id: string }}
+
+  )  {
    
   console.log(params);
 
