@@ -1,51 +1,74 @@
 // Funciones para interactuar con la base de datos
-import { PrismaClient } from "@prisma/client";
+import { Categoria, PrismaClient } from "@prisma/client";
 
 if (!process.env.DATABASE_URL && !process.env.DIRECT_URL) {
   require("dotenv").config(); // Carga las variables si no están definidas
 }
 
- 
+
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 const prisma = globalForPrisma.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-interface Product{
-  id: number;
+interface Product {
+  id: string;
   name: string;
   description: string;
   price: number;
   image: string;
+  categoriaId: string;
+  categoria: Categoria;
+
 }
 
-const addProduct = async (name: string, description: string, price: number, image: string) => {
-  await prisma.product.create({
+const addProduct = async (name: string, description: string, price: number, image: string, categoriaId: string ) => {
+  return await prisma.product.create({
     data: {
       name,
       description,
       price,
-      image
+      image,
+      categoriaId
     }
   })
 }
 
-const getAllProducts = async (): Promise<Product[]> => {
+const getAllProducts = async () => {
   await new Promise(resolve => setTimeout(resolve, 1000));
-  return await prisma.product.findMany();
+  return await prisma.categoria.findMany({
+    include: {
+      products: true
+    }
+  });
 }
 
-const getProductById = async (id: number): Promise<Product | null> => {
+const getProductById = async (id: string): Promise<Product | null> => {
   await new Promise(resolve => setTimeout(resolve, 1000));
   return await prisma.product.findUnique({
+    include: {
+      categoria: true
+    },
     where: {
       id
     }
   })
 }
 
-const updateProduct = async (id: number, name: string, description: string, price: number, image: string) => {
+const getProductsByCategory = async (categoriaId: string): Promise<Product[]> => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return await prisma.product.findMany({
+    where: {
+      categoriaId
+    },
+    include: {
+      categoria: true
+    }
+  })
+}
+
+const updateProduct = async (id: string, name: string, description: string, price: number, image: string) => {
   return await prisma.product.update({
     where: {
       id
@@ -59,10 +82,11 @@ const updateProduct = async (id: number, name: string, description: string, pric
   })
 }
 
-const deleteProduct = async (id: number) => {
+const deleteProduct = async (id: string, categoriaId: string) => {
   return await prisma.product.delete({
     where: {
-      id
+      id,
+      categoriaId
     }
   })
 }
@@ -71,38 +95,71 @@ const deleteAllProducts = async () => {
   return await prisma.product.deleteMany();
 }
 
-const seed = async () => {  
-    const productCount = await prisma.product.count();
-    
-    if(productCount == 0){
-        await prisma.product.createMany({
-          data: [
-            {
-              name: "Laptop Gaming Pro",
-              description: "Potente laptop para gaming con la última tecnología",
-              price: 1299.99,
-              image: "/images/products/laptop.jpg"
-            },
-            {
-              name: "Smartphone Ultra",
-              description: "Smartphone de última generación con cámara profesional",
-              price: 899.99,
-              image: "/images/products/imagen2.jpg"
-            },
-            {
-              name: "Auriculares Wireless",
-              description: "Auriculares inalámbricos con cancelación de ruido",
-              price: 199.99,
-              image: "/images/products/imagen3.jpg"
-            }
-          ]
-        })
-    }
+const seed = async () => {
+  const productCount = await prisma.product.count();
+
+  if (productCount == 0) {
+    console.log("Reiniciando base de datos...");
+
+
+
+    // Crear categorías
+    const categoria1 = await prisma.categoria.create({
+      data: { nameCategoria: "Ropa Deportiva" },
+    });
+
+    const categoria2 = await prisma.categoria.create({
+      data: { nameCategoria: "Relojes" },
+    });
+
+    // Crear productos
+    await prisma.product.createMany({
+      data: [
+        {
+          name: "Licra Deportiva",
+          price: 25.99,
+          image: "/images/productos/ropa-deportiva.jpg",
+          categoriaId: categoria1.id,
+          description: ""
+        },
+        {
+          name: "Licra Deportiva 2",
+          price: 25.99,
+          image: "/images/productos/ropa-deportiva.jpg",
+          categoriaId: categoria1.id,
+          description: ""
+        },
+        {
+          name: "Curren 2",
+          price: 50.99,
+          image: "/images/productos/calzado.jpg",
+          categoriaId: categoria2.id,
+          description: ""
+        },
+        {
+          name: "Curren",
+          price: 50.99,
+          image: "/images/productos/calzado.jpg",
+          categoriaId: categoria2.id,
+          description: ""
+        },
+      ],
+    });
+
+    console.log("Base de datos reiniciada con datos de prueba.");
+  }
+
+  seed()
+    .catch((e) => console.error(e))
+    .finally(async () => {
+      await prisma.$disconnect();
+    })
 }
 
- 
-
- 
 
 
-export { addProduct, getAllProducts, getProductById, updateProduct, deleteProduct, deleteAllProducts, seed }
+
+
+
+
+export { addProduct, getAllProducts, getProductById, getProductsByCategory, updateProduct, deleteProduct, deleteAllProducts, seed }

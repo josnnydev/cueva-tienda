@@ -9,6 +9,8 @@ export default function Header() {
                 <li className="mr-4"><Link href="/">Home</Link></li>
                 <li className="mr-4"><Link href="/products">Products</Link></li>
                 <li className="mr-4"><Link href="/contactos">Contactos</Link></li>
+                
+                <li className="mr-4 " title='soon'><Link href="/#">Carrito</Link></li>
             </ul>
         </nav>
     </div>
