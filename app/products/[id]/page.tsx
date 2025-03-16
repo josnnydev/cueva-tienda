@@ -14,12 +14,12 @@ export default async function ProductPage(
 
   )  {
    
-  console.log(params);
+   
 
   const {id} = await params;
 
   const product = await getProductById(Number(id));
-  console.log(product);
+   
 
 
   if (!product) {
