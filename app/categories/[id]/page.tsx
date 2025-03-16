@@ -4,8 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export default async function CategoryPage({ params }: { params: { id: string } }) {
-    const products = await getProductsByCategory(params.id);
+export default async function CategoryPage({ params }: { params: Promise<{ id: string }> }) {
+    const products = await getProductsByCategory((await params).id);
 
     if (!products.length) {
         notFound();
