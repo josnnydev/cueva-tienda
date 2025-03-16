@@ -1,9 +1,3 @@
- 
-
- 
-
- 
-
 // Funciones para interactuar con la base de datos
 import { PrismaClient } from "@prisma/client";
 
