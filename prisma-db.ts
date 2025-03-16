@@ -7,6 +7,10 @@
 // Funciones para interactuar con la base de datos
 import { PrismaClient } from "@prisma/client";
 
+if (!process.env.DATABASE_URL && !process.env.DIRECT_URL) {
+  require("dotenv").config(); // Carga las variables si no están definidas
+}
+
  
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
