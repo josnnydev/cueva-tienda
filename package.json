@@ -10,8 +10,13 @@
     "prisma:generate": "prisma generate",
     "seed": "tsx app/scripts/seed.ts"
   },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "dependencies": {
+    "@prisma/adapter-pg": "^6.5.0",
     "@prisma/client": "^6.5.0",
+    "dotenv": "^16.4.7",
     "framer-motion": "^12.5.0",
     "next": "15.2.2",
     "react": "^19.0.0",

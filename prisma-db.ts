@@ -104,5 +104,7 @@ const seed = async () => {
 
  
 
+ 
+
 
 export { addProduct, getAllProducts, getProductById, updateProduct, deleteProduct, deleteAllProducts, seed }
