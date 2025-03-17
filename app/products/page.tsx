@@ -1,10 +1,10 @@
 import React from 'react'
-import { getAllProducts } from '@/prisma-db'
+import { getCachedProducts } from '@/app/lib/cached-functions'
  
 import Link from 'next/link';
 
 export default async function Products() {
-    const categorias = await getAllProducts();
+    const categorias = await getCachedProducts();
 
     return (
         <div className="container mx-auto px-4 py-8 bg-white rounded-lg shadow-lg p-8"> 
