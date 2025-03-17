@@ -16,11 +16,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+      
         className={`${monserrat.className} antialiased`}
       >
+        <main className="pb-16">
+
         <Header/>
         {children}
         <Footer/>
+        </main>
       </body>
     </html>
   );
