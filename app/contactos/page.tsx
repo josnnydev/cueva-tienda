@@ -17,9 +17,9 @@ export default function Contactos() {
       <div className="flex flex-col gap-4 items-center justify-center mb-4">
       <strong>Redes Sociales</strong>
         <Link href="https://wa.me/message/P3LU5C3LG4JPA1" target="_blank"><FaWhatsapp className="text-4xl text-green-600 hover:text-black" /></Link>
-        <Link href="https://www.instagram.com/cueva.boutique/" target="_blank"> <IoLogoInstagram className='text-6xl text-red-500 hover:text-yellow-500' />  </Link>
-        <Link href="https://www.facebook.com/cueva.boutique/" target="_blank"> <FaFacebook className='text-6xl text-blue-500 hover:text-red-500'/></Link>
-        <Link href="https://www.tiktok.com/@cueva.boutique" target="_blank"> <FaTiktok className='text-6xl text-black-500   hover:text-pink-500  '/> </Link>
+        <Link href="https://www.instagram.com/cueva_boutique?igsh=YzljYTk1ODg3Zg==" target="_blank"> <IoLogoInstagram className='text-6xl text-red-500 hover:text-yellow-500' />  </Link>
+        <Link href="https://www.facebook.com/marketplace/profile/61561084689839/?ref=permalink&mibextid=dXMIcH" target="_blank"> <FaFacebook className='text-6xl text-blue-500 hover:text-red-500'/></Link>
+        <Link href="https://vm.tiktok.com/ZSMyPPb9A/" target="_blank"> <FaTiktok className='text-6xl text-black-500   hover:text-pink-500  '/> </Link>
 
       </div>
 
