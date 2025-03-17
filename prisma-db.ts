@@ -36,7 +36,7 @@ const addProduct = async (name: string, description: string, price: number, imag
 }
 
 const getAllProducts = async () => {
-  await new Promise(resolve => setTimeout(resolve, 1000));
+   
   return await prisma.categoria.findMany({
     include: {
       products: true
@@ -45,7 +45,7 @@ const getAllProducts = async () => {
 }
 
 const getProductById = async (id: string): Promise<Product | null> => {
-  await new Promise(resolve => setTimeout(resolve, 1000));
+   
   return await prisma.product.findUnique({
     include: {
       categoria: true
@@ -57,7 +57,7 @@ const getProductById = async (id: string): Promise<Product | null> => {
 }
 
 const getProductsByCategory = async (categoriaId: string): Promise<Product[]> => {
-  await new Promise(resolve => setTimeout(resolve, 1000));
+   
   return await prisma.product.findMany({
     where: {
       categoriaId
