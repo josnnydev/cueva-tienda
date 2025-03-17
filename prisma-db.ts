@@ -117,29 +117,29 @@ const seed = async () => {
       data: [
         {
           name: "Licra Deportiva",
-          price: 25.99,
-          image: "/images/productos/ropa-deportiva.jpg",
+          price: 950.99,
+          image: "/images/licra-corta.webp",
           categoriaId: categoria1.id,
           description: ""
         },
         {
           name: "Licra Deportiva 2",
-          price: 25.99,
-          image: "/images/productos/ropa-deportiva.jpg",
+          price: 390.99,
+          image: "/images/licra-corta3.webp",
           categoriaId: categoria1.id,
           description: ""
         },
         {
           name: "Curren 2",
-          price: 50.99,
-          image: "/images/productos/calzado.jpg",
+          price: 1490.99,
+          image: "/images/curren1.webp",
           categoriaId: categoria2.id,
           description: ""
         },
         {
           name: "Curren",
-          price: 50.99,
-          image: "/images/productos/calzado.jpg",
+          price: 1650.99,
+          image: "/images/curren4.webp",
           categoriaId: categoria2.id,
           description: ""
         },

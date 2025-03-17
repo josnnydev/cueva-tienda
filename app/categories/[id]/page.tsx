@@ -25,9 +25,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ id: s
                             <Image
                                 src={product.image}
                                 alt={product.name}
-                                fill
+                                 
                                 className="object-cover"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                quality={100}
+                                priority
+                                width={300}
+                                height={300}
                             />
                         </div>
                         <div className="p-4">
