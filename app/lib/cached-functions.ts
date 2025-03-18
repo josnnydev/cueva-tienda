@@ -15,3 +15,5 @@ export const getCachedProductById = cache(async (id: string) => {
   const product = await getProductById(id)
   return product
 })
+
+

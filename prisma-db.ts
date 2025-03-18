@@ -112,6 +112,10 @@ const seed = async () => {
       data: { nameCategoria: "Relojes" },
     });
 
+    const categoria3 = await prisma.categoria.create({
+      data: {nameCategoria: "Inears"}
+    })
+
     // Crear productos
     await prisma.product.createMany({
       data: [
@@ -143,6 +147,20 @@ const seed = async () => {
           categoriaId: categoria2.id,
           description: ""
         },
+        {
+          name: "Inear",
+          price: 1650.99,
+          image: "/images/inear1.webp",
+          categoriaId: categoria3.id,
+          description: ""
+        },
+        {
+          name: "Inear 2",
+          price: 1650.99,
+          image: "/images/inear2.webp",
+          categoriaId: categoria3.id,
+          description: ""
+        }
       ],
     });
 

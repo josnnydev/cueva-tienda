@@ -1,5 +1,5 @@
 import React from 'react'
-import { getCachedProductsByCategory } from '@/app/lib/cached-functions'
+import {getCachedProductsByCategory}  from '@/app/lib/cached-functions'
 import Image from 'next/image'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -14,7 +14,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ id: s
     return (
         <div className="container mx-auto px-4 py-8">
             <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">{products[0].categoria.nameCategoria}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex flex-col gap-4 items-center justify-center">
                 {products.map((product) => (
                     <Link 
                         key={product.id}
